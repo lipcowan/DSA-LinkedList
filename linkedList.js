@@ -14,15 +14,15 @@ class LinkedList {
         this.head = new _Node(item, this.head);
     }
 
-    insertBefore(item, node) {
+    insertBefore(item, nodeVal) {
 
     }
 
-    insertAt(item, node) {
+    insertAt(item, index) {
 
     }
 
-    insertAfter(item, node) {
+    insertAfter(item, nodeVal) {
 
     }
 
@@ -87,7 +87,7 @@ class LinkedList {
 
 }
 
-function main() {
+function main(items) {
 
     createSLL = (items) => {
         ///cycle through array of items and add them to linked list
@@ -96,8 +96,24 @@ function main() {
             throw new Error(`please include an array of items`)
         }
 
-        if (items.length === 1){
-            // 
-        }
+        list = new LinkedList;
+
+        items.map(item => {
+            list.insertLast(item)
+        })
+
+        return list;
     }
+
+    createSLL(items);
+
+    return list;
 }
+
+let items = ["Apollo", "Boomer", "Helo", "Husker", "Starbuck"];
+
+const log = main(items);
+
+console.log(log);
+console.log(log.head.next);
+console.log(log.head.next.next);
