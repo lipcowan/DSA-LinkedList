@@ -156,6 +156,13 @@ function main(items) {
     return list;
 }
 
+function isEmpty(list) {
+    if (!list.head) {
+        console.log("List is empty!")
+    }
+    console.log("list isn't empty! YAY");
+}
+
 function display(list) {
     let tempNode = list.head;
    while  (tempNode.next !== null){
@@ -165,6 +172,18 @@ function display(list) {
     }
     console.log(tempNode.value);
     console.log('END')
+}
+
+function size(list) {
+    let tempNode = list.head;
+    let counter = 1;
+    while (tempNode.next !== null){
+        if(tempNode.value !== null){
+            counter++;
+        }
+        tempNode = tempNode.next;
+    }
+    console.log(`************* List has ${counter} items ****************`);
 }
 
 function addItem(item, list) {
@@ -177,6 +196,11 @@ function removeItem(item, list) {
     list.remove(item);
     console.log(`***** Removed item: ${item}`);
     display(list);
+}
+
+function findPrevious(item, list) {
+    
+    list.find(item)
 }
 
 function insertPrior(item, refVal, list) {
@@ -197,7 +221,7 @@ function insertIntoIdx(item, idx, list) {
     display(list);
 }
 
-//////// working on exercises ..... 
+//////// working on exercise 2 ..... 
 
 let items = ["Apollo", "Boomer", "Helo", "Husker", "Starbuck"];
 
@@ -218,4 +242,13 @@ insertLater("Hotdog", "Helo", starterList);
 insertIntoIdx("Kat", 3, starterList); /// between boomer and helo?
 
 removeItem("Tauhida", starterList);
+
+//// working on exercise 3 .....
+
+// already worked on display in the second exercise
+
+size(starterList);
+
+isEmpty(starterList);
+
 
