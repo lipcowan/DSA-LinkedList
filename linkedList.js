@@ -14,6 +14,19 @@ class LinkedList {
         this.head = new _Node(item, this.head);
     }
 
+    insertBefore(item, node) {
+
+    }
+
+    insertAt(item, node) {
+
+    }
+
+    insertAfter(item, node) {
+
+    }
+
+
     insertLast(item) {
         if (this.head === null) {
             this.insertFirst(item);
@@ -72,4 +85,19 @@ class LinkedList {
         previousNode.next = currNode.next // skipping over the node with the item, removing reference
     }
 
+}
+
+function main() {
+
+    createSLL = (items) => {
+        ///cycle through array of items and add them to linked list
+
+        if (!items){
+            throw new Error(`please include an array of items`)
+        }
+
+        if (items.length === 1){
+            // 
+        }
+    }
 }
