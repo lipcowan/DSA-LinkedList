@@ -29,16 +29,44 @@ class LinkedList {
                 prevNode.next = newNode;
             }
         }
-
     }
     
 
-    insertAt(item, index) {
+    insertAt(item, position) {
+        let currNode = this.head;
+        let prevNode = null;
+        let newNode = null;
+        let nextNode = currNode.next;
+        let index = 0;
 
+        if (position === 0) {
+            return this.insertFirst(item);
+        }
+
+        while (nextNode !== null) {
+            index++;
+            prevNode = currNode;
+            currNode = nextNode;
+            nextNode = nextNode.next;
+         if (index === position) {
+            newNode = new _Node(item, currNode)
+            prevNode.next = newNode;
+         }
+        }
     }
 
     insertAfter(item, nodeVal) {
-
+        let currNode = this.head;
+        let newNode = null;
+        let nextNode = currNode.next;
+        while (nextNode !== null){
+            currNode = nextNode;
+            nextNode = nextNode.next;
+            if (currNode.value == nodeVal) {
+                newNode = new _Node(item, nextNode);
+                currNode.next = newNode;
+            }
+        }
     }
 
 
@@ -153,10 +181,21 @@ function removeItem(item, list) {
 
 function insertPrior(item, refVal, list) {
     list.insertBefore(item, refVal);
-    console.log(`*********** Inserted ${item} before ${refVal}`);
+    console.log(`*********** Inserted ${item} BEFORE ${refVal}`);
     display(list);
 }
 
+function insertLater(item, refVal, list) {
+    list.insertAfter(item, refVal);
+    console.log(`*********** Inserted ${item} AFTER ${refVal}`);
+    display(list);
+}
+
+function insertIntoIdx(item, idx, list) {
+    list.insertAt(item, idx);
+    console.log(`*********** Inserted ${item} AT position: ${idx}`);
+    display(list);
+}
 
 //////// working on exercises ..... 
 
@@ -174,5 +213,9 @@ removeItem("squirrel", starterList);
 
 insertPrior("Athena", "Boomer", starterList);
 
+insertLater("Hotdog", "Helo", starterList);
 
+insertIntoIdx("Kat", 3, starterList); /// between boomer and helo?
+
+removeItem("Tauhida", starterList);
 
