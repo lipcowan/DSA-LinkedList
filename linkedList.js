@@ -15,8 +15,23 @@ class LinkedList {
     }
 
     insertBefore(item, nodeVal) {
+        let currNode = this.head;
+        let prevNode = this.head;
+        let newNode = null;
+        if (currNode.value === nodeVal) {
+            return this.insertFirst(item)
+        }
+        while (currNode.next !== null) {
+            prevNode = currNode;
+            currNode = currNode.next;
+            if(currNode.value === nodeVal) {
+                newNode = new _Node(item, currNode);
+                prevNode.next = newNode;
+            }
+        }
 
     }
+    
 
     insertAt(item, index) {
 
@@ -87,6 +102,10 @@ class LinkedList {
 
 }
 
+//// exterior functions for exercises
+
+
+// - create main list for examples
 function main(items) {
 
     createSLL = (items) => {
@@ -96,12 +115,11 @@ function main(items) {
             throw new Error(`please include an array of items`)
         }
 
+        // create new instance of linkedlist class and map through items array
         list = new LinkedList;
-
         items.map(item => {
             list.insertLast(item)
         })
-
         return list;
     }
 
@@ -110,10 +128,51 @@ function main(items) {
     return list;
 }
 
+function display(list) {
+    let tempNode = list.head;
+   while  (tempNode.next !== null){
+        console.log(`${tempNode.value}
+        Next: ${tempNode.next.value}`);
+        tempNode = tempNode.next;
+    }
+    console.log(tempNode.value);
+    console.log('END')
+}
+
+function addItem(item, list) {
+    list.insertLast(item);
+    console.log(`***** Added item: ${item}`);
+    display(list);
+}
+
+function removeItem(item, list) {
+    list.remove(item);
+    console.log(`***** Removed item: ${item}`);
+    display(list);
+}
+
+function insertPrior(item, refVal, list) {
+    list.insertBefore(item, refVal);
+    console.log(`*********** Inserted ${item} before ${refVal}`);
+    display(list);
+}
+
+
+//////// working on exercises ..... 
+
 let items = ["Apollo", "Boomer", "Helo", "Husker", "Starbuck"];
 
-const log = main(items);
+let starterList = main(items);
 
-console.log(log);
-console.log(log.head.next);
-console.log(log.head.next.next);
+display(starterList);
+
+addItem("Tauhida", starterList);
+
+addItem("squirrel", starterList);
+
+removeItem("squirrel", starterList);
+
+insertPrior("Athena", "Boomer", starterList);
+
+
+
